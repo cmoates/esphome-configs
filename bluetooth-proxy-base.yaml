@@ -29,9 +29,18 @@ bluetooth_proxy:
   active: true
 
 logger:
+
 api:
   encryption:
     key: !secret api_encryption_key
+
 ota:
   - platform: esphome
-    password: !secret ota_password
+
+# Diagnostic sensors for all proxies
+sensor:
+  - platform: wifi_signal
+    name: "${hostname} WiFi Signal"
+    update_interval: 60s
+  - platform: uptime
+    name: "${hostname} Uptime"
