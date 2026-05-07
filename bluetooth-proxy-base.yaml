@@ -47,18 +47,20 @@ sensor:
   - platform: wifi_signal
     name: "${hostname} WiFi Signal"
     update_interval: 60s
+    
   - platform: uptime
     name: "${hostname} Uptime"
+
+  # Corrected platform for ESP-IDF
   - platform: debug
-    free_heap:
+    free:
       name: "${hostname} Free Heap"
-    loop_time:
-      name: "${hostname} Loop Time"
 
 text_sensor:
   - platform: wifi_info
     bssid:
       name: "${hostname} BSSID"
+      
   - platform: debug
     device_info:
       name: "${hostname} Reset Reason"
