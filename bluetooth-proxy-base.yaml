@@ -29,6 +29,7 @@ esp32_ble_tracker:
 
 bluetooth_proxy:
   active: true
+  id: ble_proxy_id
 
 logger:
 
