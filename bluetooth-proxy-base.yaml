@@ -44,3 +44,6 @@ sensor:
     update_interval: 60s
   - platform: uptime
     name: "${hostname} Uptime"
+  - platform: debug
+    free_heap:
+      name: "${hostname} Free Heap"
