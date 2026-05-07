@@ -41,6 +41,10 @@ api:
 
 ota:
   - platform: esphome
+    on_begin:
+      then:
+        - bluetooth_proxy.disable: 
+        - esp32_ble_tracker.stop:
 
 # Diagnostic sensors for all proxies
 sensor:
