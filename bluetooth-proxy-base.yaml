@@ -44,8 +44,6 @@ ota:
   - platform: esphome
     on_begin:
       then:
-        - bluetooth_proxy.disable: 
-        # Note the '_scan' suffix and the lack of '.disable' for proxy
         - esp32_ble_tracker.stop_scan: 
         # For the proxy, we use a small lambda to set it to inactive
         - lambda: 'id(ble_proxy_id).set_active(false);'
