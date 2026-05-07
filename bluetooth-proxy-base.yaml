@@ -62,5 +62,5 @@ text_sensor:
       name: "${hostname} BSSID"
       
   - platform: debug
-    device_info:
+    device:
       name: "${hostname} Reset Reason"
