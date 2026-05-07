@@ -32,6 +32,8 @@ bluetooth_proxy:
 
 logger:
 
+debug:
+
 api:
   encryption:
     key: !secret api_encryption_key
