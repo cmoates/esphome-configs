@@ -32,6 +32,9 @@ bluetooth_proxy:
   id: ble_proxy_id
 
 logger:
+  level: DEBUG
+  remote_host: syslog${dns_domain}
+  remote_port: 514
 
 debug:
 
