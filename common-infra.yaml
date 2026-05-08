@@ -26,15 +26,12 @@ api:
     key: !secret api_encryption_key
   reboot_timeout: 0s
 
+udp:
+  addresses:
+    - syslog${dns_domain}
 logger:
   level: DEBUG
 
-network_logging:
-  - service: syslog
-    address: syslog${dns_domain}
-    port: 514
-    protocol: UDP
-    tag: esphome
 
 ota:
   - platform: esphome
