@@ -1,0 +1,59 @@
+# common-infrastructure.yaml
+esphome:
+  min_version: 2025.11.0
+
+# Framework & Chip Basics
+esp32:
+  board: esp32dev
+  variant: esp32
+  framework:
+    type: esp-idf
+
+# Network Standards
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  domain: ${dns_domain}
+  use_address: ${hostname}${dns_domain}
+  reboot_timeout: 0s
+  power_save_mode: none
+
+# Management Stack
+api:
+  encryption:
+    key: !secret api_encryption_key
+  reboot_timeout: 0s
+
+logger:
+  level: DEBUG
+
+network_logging:
+  - service: syslog
+    address: syslog${dns_domain}
+    port: 514
+    protocol: UDP
+    tag: esphome
+
+ota:
+  - platform: esphome
+
+prometheus:
+web_server:
+  port: 80
+
+debug:
+
+# Standard Sensors
+sensor:
+  - platform: wifi_signal
+    name: "${hostname} WiFi Signal"
+  - platform: uptime
+    name: "${hostname} Uptime"
+  - platform: debug
+    free:
+      name: "${hostname} Free Heap"
+
+text_sensor:
+  - platform: wifi_info
+    bssid:
+      name: "${hostname} BSSID"
