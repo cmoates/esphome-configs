@@ -29,9 +29,23 @@ api:
 udp:
   addresses:
     - syslog${dns_domain}
+
+time:
+  - platform: sntp
+  id: sntp_time
+
+
 logger:
   level: DEBUG
 
+syslog:
+  id: syslog_logger
+  port: 514
+  # The 'tag' is called 'tag' here as well, helps Alloy filter
+  tag: esphome
+  level: DEBUG
+  # Set the facility (16 is local0, the default)
+  facility: 16
 
 ota:
   - platform: esphome
