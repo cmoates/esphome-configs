@@ -1,7 +1,7 @@
 # bluetooth-proxy-base.yaml
 packages:
   # This pulls in the lower tier
-  infrastructure: !include common-infrastructure.yaml
+  infrastructure: !include common-infra.yaml
 
 esp32_ble_tracker:
   scan_parameters:
