@@ -1,5 +1,7 @@
 # common-infrastructure.yaml
 esphome:
+  name: ${hostname}
+  friendly_name: ${hostname}
   min_version: 2025.11.0
 
 # Framework & Chip Basics
@@ -36,6 +38,16 @@ network_logging:
 
 ota:
   - platform: esphome
+    on_begin:
+      then:
+        - esp32_ble_tracker.stop_scan: 
+        # For the proxy, we use a small lambda to set it to inactive
+        - lambda: 'id(ble_proxy_id).set_active(false);'
+    on_end:
+      then:
+        # Optional: ensure it comes back if the OTA fails or finishes
+        - esp32_ble_tracker.start_scan: 
+        - lambda: 'id(ble_proxy_id).set_active(true);'
 
 prometheus:
 web_server:
@@ -43,12 +55,16 @@ web_server:
 
 debug:
 
-# Standard Sensors
+# Diagnostic sensors for all proxies
 sensor:
   - platform: wifi_signal
     name: "${hostname} WiFi Signal"
+    update_interval: 60s
+    
   - platform: uptime
     name: "${hostname} Uptime"
+
+  # Corrected platform for ESP-IDF
   - platform: debug
     free:
       name: "${hostname} Free Heap"
@@ -57,3 +73,7 @@ text_sensor:
   - platform: wifi_info
     bssid:
       name: "${hostname} BSSID"
+      
+  - platform: debug
+    device:
+      name: "${hostname} Reset Reason"
