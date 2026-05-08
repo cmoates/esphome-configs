@@ -33,8 +33,13 @@ bluetooth_proxy:
 
 logger:
   level: DEBUG
-  remote_host: syslog${dns_domain}
-  remote_port: 514
+
+network_logging:
+  - service: syslog
+    address: syslog${dns_domain}
+    port: 514
+    protocol: UDP
+    tag: esphome
 
 debug:
 
