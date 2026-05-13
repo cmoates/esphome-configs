@@ -33,7 +33,9 @@ udp:
 time:
   - platform: sntp
   id: sntp_time
-
+  servers:
+   - ntp${dns_domain}
+   timezone: "America/New_York"
 
 logger:
   level: DEBUG
